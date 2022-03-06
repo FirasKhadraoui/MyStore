@@ -1,39 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import styled from 'styled-components';
 
-class Product extends Component {
-    constructor(props){
-        super(props);
-        this.state = { product: props.product, updated: 0, likes: 0 };
-        this.addLikes=this.addLikes.bind(this);
-    }
 
-
-addLikes(){
-    this.setState((oldState)=>({
-        likes: oldState.likes+1,
-        update:oldState.update+1,
-        
-    }));
-}
-    render() {
-        return (
-            <div>
+function Product(props) {
+    const[likes,setlikes] = useState(0);
+    const addLikes=()=>{setlikes(likes+1)};
+    return (
+        <div>
             <ProductFrame>
                 <ProductImageWrapper>
-                    <ProductImage src={this.props.product.img}>
+                    <ProductImage src={props.product.img}>
                     </ProductImage>
                 </ProductImageWrapper>
                 <ProductInfoWrapper>
-                    <span>{this.props.product.name}</span>
-                    <span>{this.props.product.price}</span>
-                    <span>likes : {this.state.likes}</span>
+                    <span>{props.product.name}</span>
+                    <span>{props.product.price}</span>
+                    <span>likes : {likes}</span>
                 </ProductInfoWrapper>
-                <button onClick={this.addLikes}>Like</button>
+                <button onClick={addLikes}>Like</button>
             </ProductFrame>
-            </div>
-        );
-    }
+         </div>
+    );
 }
 
 export default Product;
