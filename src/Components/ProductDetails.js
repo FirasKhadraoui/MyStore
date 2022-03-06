@@ -1,10 +1,11 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import products from '../products.json'
 
 function ProductDetails(props) {
     const name = props.match.params.name; //obtenir les infos de passes au nom que nous avons attribué dans la Route
+    //const {name} = useParams();
     const produit = products.filter((p) => p.name === name)[0];
     const history = useHistory();
 
@@ -14,16 +15,16 @@ function ProductDetails(props) {
             <Container>
                 <ContentBox>
                     <Content1>
-                        <img src={produit.img} width="600" height="600" alt={produit.name} />
+                        <img src={produit.img} width="600" height="550" alt={produit.name} />
                     </Content1>
                     <Content2>
                         <H1>{produit.name}</H1>
                         <H3>Description:</H3>
-                        <span>{produit.description}</span>
+                        <Span>{produit.description}</Span>
                         <H3>Price:</H3>
-                        <span>{produit.price} DT</span>
+                        <Span>{produit.price} DT</Span>
                         <H3>Like:</H3>
-                        <span>{produit.likes}</span>
+                        <Span>{produit.likes}</Span>
                     </Content2>
                 </ContentBox>
                 <Footer>
@@ -31,7 +32,6 @@ function ProductDetails(props) {
                 </Footer>
             </Container>
         </ProductsWrapper>
-
     );
 }
 
